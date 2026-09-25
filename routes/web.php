@@ -11,8 +11,24 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+
+
+Route::get('/make-me-admin', function () {
+    $user = \App\Models\User::updateOrCreate(
+        ['email' => 'admin@myshop.com'],
+        [
+            'name' => 'Admin',
+            'password' => \Hash::make('password123'),
+            'role' => 'admin',
+            'email_verified_at' => now(),
+        ]
+    );
+    return 'Admin created. Email: admin@myshop.com / Password: password123';
+});
+
 Route::get('/home', function () {
-    return view('home');
+    $bestSale = \App\Models\Product::orderByDesc('id')->take(4)->get();
+    return view('home', compact('bestSale'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
