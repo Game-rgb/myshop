@@ -27,13 +27,6 @@ Route::get('/make-me-admin', function () {
 });
 
 
-Route::get('/whoami', function () {
-    if (!auth()->check()) return 'not logged in';
-    return [
-        'email' => auth()->user()->email,
-        'role'  => auth()->user()->role,
-    ];
-});
 
 Route::get('/home', function () {
     $bestSale = \App\Models\Product::orderByDesc('id')->take(4)->get();
@@ -80,5 +73,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/charts', [OrderController::class, 'charts'])->name('orders.charts');
     Route::get('/cart/data', [CartController::class, 'data'])->name('cart.data');
 });
+
+
+Route::get('/whoami', function () {
+    if (!auth()->check()) return 'not logged in';
+    return [
+        'email' => auth()->user()->email,
+        'role'  => auth()->user()->role,
+    ];
+});
+
 
 require __DIR__.'/auth.php';
