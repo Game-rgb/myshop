@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 
+echo "==> Clearing caches..."
+php artisan optimize:clear
+
 echo "==> Running migrations..."
 php artisan migrate --force || echo "Migrate failed (continuing)"
 
