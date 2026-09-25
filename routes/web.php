@@ -26,6 +26,15 @@ Route::get('/make-me-admin', function () {
     return 'Admin created. Email: admin@myshop.com / Password: password123';
 });
 
+
+Route::get('/whoami', function () {
+    if (!auth()->check()) return 'not logged in';
+    return [
+        'email' => auth()->user()->email,
+        'role'  => auth()->user()->role,
+    ];
+});
+
 Route::get('/home', function () {
     $bestSale = \App\Models\Product::orderByDesc('id')->take(4)->get();
     return view('home', compact('bestSale'));
