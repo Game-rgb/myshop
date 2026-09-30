@@ -40,31 +40,30 @@ class ProductController extends Controller
     /**
      * Store a newly created product.
      */
-    public function store(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'price' => 'required|numeric',
-            'details' => 'nullable|string',
-            'stock' => 'required|integer',
-            'image' => 'required|string|max:2048',
-            'category_id' => 'nullable|exists:categories,id',
-        ]);
+   public function store(Request $request)
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'price' => 'required|numeric',
+        'details' => 'nullable|string',
+        'stock' => 'required|integer',
+        'image' => 'image|mimes:jpeg,png,jpg,webp|max:2048',
+        'category_id' => 'nullable|exists:categories,id',
+    ]);
 
-          $imagePath = $request->file('image')->store('products', 'public');
+    $imagePath = $request->file('image')->store('products', 'public');
 
-        Product::create([
-            'category_id' => $request->category_id,
-            'name' => $request->name,
-            'price' => $request->price,
-            'details' => $request->details,
-            'stock' => $request->stock,
-            'image' => $imagePath,
-        ]);
+    Product::create([
+        'category_id' => $request->category_id,
+        'name' => $request->name,
+        'price' => $request->price,
+        'details' => $request->details,
+        'stock' => $request->stock,
+        'image' => $imagePath,
+    ]);
 
-        return redirect()->route('products.index')->with('success', 'Product added!');
-    }
-
+    return redirect()->route('products.index')->with('success', 'Product added!');
+}
     /**
      * Display a single product.
      */
