@@ -40,18 +40,21 @@ class ProductController extends Controller
     /**
      * Store a newly created product.
      */
-   public function store(Request $request)
+  public function store(Request $request)
 {
     $request->validate([
         'name' => 'required|string|max:255',
         'price' => 'required|numeric',
         'details' => 'nullable|string',
         'stock' => 'required|integer',
-        'image' => 'image|mimes:jpeg,png,jpg,webp|max:2048',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
         'category_id' => 'nullable|exists:categories,id',
     ]);
 
-    $imagePath = $request->file('image')->store('products', 'public');
+    $imagePath = null;
+    if ($request->hasFile('image')) {
+        $imagePath = $request->file('image')->store('products', 'public');
+    }
 
     Product::create([
         'category_id' => $request->category_id,
@@ -64,23 +67,6 @@ class ProductController extends Controller
 
     return redirect()->route('products.index')->with('success', 'Product added!');
 }
-    /**
-     * Display a single product.
-     */
-    public function show(Product $product)
-    {
-        return view('products.show', compact('product'));
-    }
-
-    /**
-     * Show the form for editing a product.
-     */
-    public function edit(Product $product)
-    {
-        $categories = Category::all();
-        return view('products.edit', compact('product', 'categories'));
-    }
-
     /**
      * Update a product.
      */
