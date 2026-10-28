@@ -26,7 +26,10 @@ Route::get('/products/search', [ProductController::class, 'search'])->name('prod
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('categories', CategoryController::class);
-    Route::resource('products', ProductController::class);
+    
+    // I added the ->where() constraint here so it ONLY accepts numbers
+    Route::resource('products', ProductController::class)->where(['product' => '[0-9]+']);
+    
     Route::get('/cart/data', [CartController::class, 'data'])->name('cart.data');
 });
 
