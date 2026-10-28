@@ -92,6 +92,13 @@ class ProductController extends Controller
     return redirect()->route('products.index')->with('success', 'Product updated!');
 }
 
+
+ public function edit(Product $product)
+    {
+        $categories = Category::all();
+        return view('products.edit', compact('product', 'categories'));
+    }
+
     /**
      * Delete a product.
      */
