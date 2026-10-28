@@ -57,6 +57,6 @@ class CartController extends Controller
         'total' => $total,
     ]);
 }
-
+ 
 
 }

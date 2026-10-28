@@ -124,5 +124,11 @@ class ProductController extends Controller
 
         return response()->json($products);
     }
+     public function show(Product $product)
+    {
+        // For now, let's just return a simple string to make sure the error goes away.
+        // We can add the full view later.
+        return 'Product Name: ' . $product->name . '<br>Price: $' . $product->price . '<br>Details: ' . $product->details;
+    }
 
 }
