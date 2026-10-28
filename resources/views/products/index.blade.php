@@ -59,7 +59,7 @@
 
                         {{-- Image --}}
                         <div class="overflow-hidden rounded-md bg-slate-100">
-                            <img src="{{ $list->image }}"
+                            <img src="{{ asset('storage/' . $list->image) }}"
                                  alt="{{ $list->name }}"
                                  class="w-full h-[180px] object-cover group-hover:scale-105 transition-transform duration-300">
                         </div>
@@ -260,4 +260,4 @@
         }
     </script>
 
-</x-app-layout>         
+</x-app-layout>
