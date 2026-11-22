@@ -15,19 +15,19 @@ public function index()
     return view('categories.index', compact('categories'));
 }
 
-public function store(Request $request)
-{
-    $request->validate([
-        'name' => 'required|string|max:255|unique:categories,name',
-    ]);
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255|unique:categories,name',
+        ]);
 
-    Category::create([
-        'name' => $request->name,
-        'slug' => Str::slug($request->name),
-    ]);
+        Category::create([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+        ]);
 
-    return redirect()->route('categories.index')->with('success', 'Category created!');
-}
+        return redirect()->route('categories.index')->with('success', 'Category created!');
+    }
 
 public function create()
 {

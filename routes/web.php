@@ -1,5 +1,4 @@
 <?php
-
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;

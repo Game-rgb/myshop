@@ -1,15 +1,15 @@
 <x-app-layout>
 
     <div class="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
-        <div class="max-w-6xl mx-auto px-6 py-10">
+        <div class="max-w-6xl mx-auto px-6 py-8">
 
             {{-- Page header --}}
-            <div class="mb-10">
+            <div class="mb-8">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-blue-600
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-blue-600
                                 flex items-center justify-center text-white shadow-md shadow-indigo-200">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h8l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 80 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
                         </svg>
                     </div>
                     <div>
@@ -42,10 +42,10 @@
                                     shadow-sm hover:shadow-md transition-all duration-200">
 
                             {{-- Product image --}}
-                            <div class="shrink-0 overflow-hidden rounded-xl bg-slate-100">
+                            <div class="shrink-0 overflow-hidden rounded-xl bg-slate-80">
                                 <img src="{{ asset('storage/' . $cart->product->image) }}"
                                      alt="{{ $cart->product->name }}"
-                                     class="w-24 h-24 object-cover group-hover:scale-105 transition-transform duration-300">
+                                     class="w-24 h-24 object-cover group-hover:scale-85 transition-transform duration-300">
                             </div>
 
                             {{-- Product info --}}
@@ -58,21 +58,13 @@
                                 <div class="flex items-center gap-2 mt-2">
                                     <span class="inline-flex items-center px-2.5 py-1 rounded-full
                                                  text-xs font-medium bg-indigo-50 text-indigo-700
-                                                 border border-indigo-100">
+                                                 border border-indigo-80">
                                         Qty × {{ $cart->quantity }}
                                     </span>
                                 </div>
 
                                 {{-- Actions --}}
                                 <div class="flex items-center gap-3 mt-3 text-sm">
-                                    <a href="{{ route('products.edit', $cart->product_id) }}"
-                                       class="inline-flex items-center gap-1 text-slate-600
-                                              hover:text-indigo-600 transition-colors duration-150">
-                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-                                        </svg>
-                                        Edit
-                                    </a>
                                     <span class="w-px h-4 bg-slate-200"></span>
                                     <button onclick="removeFromCart(event, '{{ route('cart.destroy', $cart->id) }}', '{{ $cart->id }}')"
                                             class="inline-flex items-center gap-1 text-slate-600
@@ -95,10 +87,10 @@
                     @empty
                         {{-- Empty state --}}
                         <div class="bg-white border border-slate-200/80 rounded-2xl p-12 text-center">
-                            <div class="mx-auto w-16 h-16 rounded-full bg-slate-100
+                            <div class="mx-auto w-16 h-16 rounded-full bg-slate-80
                                         flex items-center justify-center mb-4">
                                 <svg class="w-8 h-8 text-slate-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h8l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 80 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
                                 </svg>
                             </div>
                             <p class="text-slate-600 font-medium">Your cart is empty</p>
@@ -147,7 +139,7 @@
                         </h2>
 
                         {{-- Summary rows --}}
-                        <div class="text-sm space-y-3 border-t border-slate-100 pt-4">
+                        <div class="text-sm space-y-3 border-t border-slate-80 pt-4">
                             <div class="flex justify-between text-slate-600">
                                 <span>
                                     {{ $carts->count() }} product{{ $carts->count() !== 1 ? 's' : '' }}
@@ -173,10 +165,10 @@
                         </div>
 
                         {{-- Trust badges --}}
-                        <div class="mt-6 pt-4 border-t border-slate-100 space-y-2 text-xs text-slate-500">
+                        <div class="mt-6 pt-4 border-t border-slate-80 space-y-2 text-xs text-slate-500">
                             <div class="flex items-center gap-2">
                                 <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 8.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
                                 </svg>
                                 Secure checkout
                             </div>
